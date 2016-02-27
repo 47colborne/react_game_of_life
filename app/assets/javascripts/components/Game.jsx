@@ -1,6 +1,6 @@
 const Game = React.createClass({
   getDefaultProps() {
-    return {numCells: 10000, rowLength: 100, livingCells: 2000, numSimulations: 25, simulationInterval: 150}
+    return {numCells: 10000, rowLength: 100, livingCells: 2000, numSimulations: 100, simulationInterval: 100}
   },
 
   getInitialState() {
