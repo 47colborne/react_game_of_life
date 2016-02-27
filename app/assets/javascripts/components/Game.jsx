@@ -23,8 +23,8 @@ const Game = React.createClass({
   componentDidMount() {
     this.seedCells();
 
-    this.seeds.forEach((index) => {
-      this.notifyNeighbouringCells(index, 1);
+    this.seeds.forEach((cellIndex) => {
+      this.notifyNeighbouringCells(cellIndex, 1);
     })
   },
 
@@ -32,10 +32,10 @@ const Game = React.createClass({
     this.seeds = [];
 
     for (var i = 0; i < this.props.livingCells; i++) {
-      let rand = Math.floor(Math.random() * this.props.numCells);
-      console.log(`Making cell #${rand} alive`);
-      this.cells[rand].makeAlive();
-      this.seeds.push(rand);
+      let randomIndex = Math.floor(Math.random() * this.props.numCells);
+      console.log(`Making cell #${randomIndex} alive`);
+      this.cells[randomIndex].makeAlive();
+      this.seeds.push(randomIndex);
     }
     this.deduplicateSeeds();
   },
@@ -44,45 +44,40 @@ const Game = React.createClass({
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
     }
+
     this.seeds = this.seeds.filter(onlyUnique)
   },
 
-  notifyNeighbouringCells(index, change) {
-    let getNeighbouringIndices = (index) => {
-      let neighbourIndices = [];
+  notifyNeighbouringCells(cellIndex, change) {
+    let neighbourIndices = [];
 
-      // Left + diagonals unless at beginning of row
-      if (index % this.props.rowLength != 0) {
-        neighbourIndices.push(index - this.props.rowLength - 1);
-        neighbourIndices.push(index - 1);
-        neighbourIndices.push(index + this.props.rowLength - 1);
-      }
+    // Left + diagonals unless at beginning of row
+    if (cellIndex % this.props.rowLength != 0) {
+      neighbourIndices.push(cellIndex - this.props.rowLength - 1);
+      neighbourIndices.push(cellIndex - 1);
+      neighbourIndices.push(cellIndex + this.props.rowLength - 1);
+    }
 
-      // Right + diagonals unless at end of row
-      if (index % this.props.rowLength != (this.props.rowLength - 1)) {
-        neighbourIndices.push(index - this.props.rowLength + 1);
-        neighbourIndices.push(index + 1);
-        neighbourIndices.push(index + this.props.rowLength + 1);
-      }
+    // Right + diagonals unless at end of row
+    if (cellIndex % this.props.rowLength != (this.props.rowLength - 1)) {
+      neighbourIndices.push(cellIndex - this.props.rowLength + 1);
+      neighbourIndices.push(cellIndex + 1);
+      neighbourIndices.push(cellIndex + this.props.rowLength + 1);
+    }
 
-      // Up and down
-      neighbourIndices.push(index - this.props.rowLength);
-      neighbourIndices.push(index + this.props.rowLength);
+    // Up and down
+    neighbourIndices.push(cellIndex - this.props.rowLength);
+    neighbourIndices.push(cellIndex + this.props.rowLength);
 
-      return neighbourIndices
-    };
-
-    let _this = this;
-
-    getNeighbouringIndices(index).forEach((index) => {
-      if (_this.cells[index]) {
-        _this.cells[index].modifyNeighbourCount(change)
+    neighbourIndices.forEach((index) => {
+      if (this.cells[index]) {
+        this.cells[index].modifyNeighbourCount(change)
       }
     })
   },
 
-  endOfRow(num) {
-    return num % this.props.rowLength == this.props.rowLength - 1;
+  endOfRow(cellIndex) {
+    return cellIndex % this.props.rowLength == this.props.rowLength - 1;
   },
 
   simulateGeneration() {
