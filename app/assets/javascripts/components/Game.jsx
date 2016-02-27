@@ -14,7 +14,7 @@ const Game = React.createClass({
     this.cells = [];
 
     for (var i = 0; i < this.props.numCells; i++) {
-      cells.push(<Cell {...this.cellProps()} />);
+      cells.push(<Cell {...this.cellProps(i)} />);
     }
 
     this.setState({cellElements: cells});
@@ -102,7 +102,7 @@ const Game = React.createClass({
     })
   },
 
-  cellProps() {
+  cellProps(index) {
     return {
       ref: (cell) => this.cells.push(cell),
       onDeath: (cell) => {
@@ -110,7 +110,8 @@ const Game = React.createClass({
       },
       onBirth: (cell) => {
         this.bornCells.push(this.cells.indexOf(cell))
-      }
+      },
+      key: index
     }
   },
 
@@ -121,7 +122,7 @@ const Game = React.createClass({
       grid.push(this.state.cellElements[i]);
 
       if (this.endOfRow(i)) {
-        grid.push(<br/>)
+        grid.push(<br key={1000000 + i}/>)
       }
     }
 
