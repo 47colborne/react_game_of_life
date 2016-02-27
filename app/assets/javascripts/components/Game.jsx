@@ -1,6 +1,6 @@
 const Game = React.createClass({
   getDefaultProps() {
-    return {numCells: 2500, rowLength: 50, livingCells: 500, numSimulations: 25}
+    return {numCells: 3600, rowLength: 60, livingCells: 720, numSimulations: 25}
   },
 
   getInitialState() {
@@ -33,7 +33,6 @@ const Game = React.createClass({
 
     for (var i = 0; i < this.props.livingCells; i++) {
       let randomIndex = Math.floor(Math.random() * this.props.numCells);
-      console.log(`Making cell #${randomIndex} alive`);
       this.cells[randomIndex].makeAlive();
       this.seeds.push(randomIndex);
     }
@@ -107,14 +106,10 @@ const Game = React.createClass({
     return {
       ref: (cell) => this.cells.push(cell),
       onDeath: (cell) => {
-        let cellIndex = this.cells.indexOf(cell);
-        console.log(`Received notice of death from ${cellIndex}`);
-        this.deadCells.push(cellIndex)
+        this.deadCells.push(this.cells.indexOf(cell))
       },
       onBirth: (cell) => {
-        let cellIndex = this.cells.indexOf(cell);
-        console.log(`Received notice of birth from ${cellIndex}`);
-        this.bornCells.push(cellIndex)
+        this.bornCells.push(this.cells.indexOf(cell))
       }
     }
   },
