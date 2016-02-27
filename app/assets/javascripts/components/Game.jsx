@@ -1,6 +1,6 @@
 const Game = React.createClass({
   getDefaultProps() {
-    return {numCells: 12, rowLength: 4, livingCells: 4}
+    return {numCells: 16, rowLength: 4, livingCells: 4}
   },
 
   getInitialState() {
@@ -136,7 +136,12 @@ const Game = React.createClass({
   render() {
     return (
       <div>
-        {this.createCellGrid()}
+
+        <div className="grid">
+          {this.createCellGrid()}
+        </div>
+
+        <br/>
 
         <button onClick={this.simulateGeneration}>Simulate Generation</button>
       </div>
