@@ -1,6 +1,6 @@
 const Game = React.createClass({
   getDefaultProps() {
-    return {numCells: 64, rowLength: 8, livingCells: 16, numSimulations: 10}
+    return {numCells: 2500, rowLength: 50, livingCells: 500, numSimulations: 25}
   },
 
   getInitialState() {
@@ -146,9 +146,10 @@ const Game = React.createClass({
         <button
           onClick={(e) => {
                     let generations = this.props.numSimulations;
-                    let interval = 200;
+                    let interval = 150;
 
                     $(e.target).attr('disabled', true);
+
                     for (var i = 0; i < generations; i++) {
                       setTimeout(() => this.simulateGeneration(), i * interval);
                     }

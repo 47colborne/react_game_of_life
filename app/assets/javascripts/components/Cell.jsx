@@ -39,7 +39,7 @@ const Cell = React.createClass({
   render() {
     return (
       <div className="cell">
-        {this.state.alive ? 'X' : ''}
+        {this.state.alive ? 'x' : ''}
       </div>
     )
   }
