@@ -1,10 +1,6 @@
 const Cell = React.createClass({
   getInitialState() {
-    return {neighbourCount: 0}
-  },
-
-  getDefaultProps() {
-    return {alive: false}
+    return {alive: false, neighbourCount: 0}
   },
 
   modifyNeighbourCount(change) {
@@ -13,8 +9,16 @@ const Cell = React.createClass({
     })
   },
 
+  makeAlive() {
+    this.setState({alive: true})
+  },
+
+  makeDead() {
+    this.setState({alive: false})
+  },
+
   simulateGeneration() {
-    if (this.props.alive) {
+    if (this.state.alive) {
       if (this.state.neighbourCount < 2) {
         console.log(`I died due to underpopulation with ${this.state.neighbourCount} neighbours`);
         this.props.onDeath(this)
@@ -35,7 +39,7 @@ const Cell = React.createClass({
   render() {
     return (
       <div className="cell">
-        {this.props.alive ? 'X' : ''}
+        {this.state.alive ? 'X' : ''}
       </div>
     )
   }

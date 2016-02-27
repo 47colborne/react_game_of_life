@@ -11,30 +11,32 @@ const Game = React.createClass({
     let cells = [];
     this.deadCells = [];
     this.bornCells = [];
-
     this.cells = [];
+
     for (var i = 0; i < this.props.numCells; i++) {
       cells.push(<Cell {...this.cellProps()} />);
     }
 
-    this.seedCells(cells)
+    this.setState({cells: cells});
   },
 
   componentDidMount() {
+    this.seedCells();
+
     this.seeds.forEach((index) => {
       this.notifyNeighbouringCells(index, 1);
     })
   },
 
-  seedCells(cells) {
+  seedCells() {
     this.seeds = [];
+
     for (var i = 0; i < this.props.livingCells; i++) {
       let rand = Math.floor(Math.random() * this.props.numCells);
       console.log(`Making cell #${rand} alive`);
-      cells[rand] = <Cell alive={true} {...this.cellProps()} />;
+      this.cells[rand].makeAlive();
       this.seeds.push(rand);
     }
-    this.setState({cells: cells});
     this.deduplicateSeeds();
   },
 
@@ -96,10 +98,12 @@ const Game = React.createClass({
 
   dispatchNeighbourChanges() {
     this.deadCells.forEach((cell) => {
+      this.cells[cell].makeDead();
       this.notifyNeighbouringCells(cell, -1)
     });
 
     this.bornCells.forEach((cell) => {
+      this.cells[cell].makeAlive();
       this.notifyNeighbouringCells(cell, 1)
     })
   },
@@ -111,7 +115,6 @@ const Game = React.createClass({
         let cellIndex = this.cells.indexOf(cell);
         console.log(`Received notice of death from ${cellIndex}`);
         this.deadCells.push(cellIndex)
-
       },
       onBirth: (cell) => {
         let cellIndex = this.cells.indexOf(cell);
