@@ -46,25 +46,23 @@ const Game = React.createClass({
     let getNeighbouringIndices = (index) => {
       let neighbourIndices = [];
 
-      // Left unless at beginning of row
+      // Left + diagonals unless at beginning of row
       if (index % this.props.rowLength != 0) {
+        neighbourIndices.push(index - this.props.rowLength - 1);
         neighbourIndices.push(index - 1);
+        neighbourIndices.push(index + this.props.rowLength - 1);
       }
 
-      // Right unless at end of row
+      // Right + diagonals unless at end of row
       if (index % this.props.rowLength != (this.props.rowLength - 1)) {
+        neighbourIndices.push(index - this.props.rowLength + 1);
         neighbourIndices.push(index + 1);
+        neighbourIndices.push(index + this.props.rowLength + 1);
       }
 
-      // Up + diagonal
-      neighbourIndices.push(index - this.props.rowLength + 1);
+      // Up and down
       neighbourIndices.push(index - this.props.rowLength);
-      neighbourIndices.push(index - this.props.rowLength - 1);
-
-      // Down + diagonal
-      neighbourIndices.push(index + this.props.rowLength + 1);
       neighbourIndices.push(index + this.props.rowLength);
-      neighbourIndices.push(index + this.props.rowLength - 1);
 
       return neighbourIndices
     };
