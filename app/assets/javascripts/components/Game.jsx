@@ -80,6 +80,12 @@ const Game = React.createClass({
     return num % this.props.rowLength == this.props.rowLength - 1;
   },
 
+  simulateGeneration() {
+    this.cells.forEach((cell) => {
+      cell.simulateGeneration()
+    })
+  },
+
   createCellGrid() {
     let grid = [];
 
@@ -98,6 +104,8 @@ const Game = React.createClass({
     return (
       <div>
         {this.createCellGrid()}
+
+        <button onClick={this.simulateGeneration}>Simulate Generation</button>
       </div>
     )
   }
