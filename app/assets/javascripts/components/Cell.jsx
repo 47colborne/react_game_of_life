@@ -8,7 +8,9 @@ const Cell = React.createClass({
   },
 
   modifyNeighbourCount(num) {
-    this.setState({neighbourCount: this.state.neighbourCount + num})
+    this.setState((oldState) => {
+      return {neighbourCount: oldState.neighbourCount + num}
+    })
   },
 
   render() {
