@@ -1,6 +1,6 @@
 const Game = React.createClass({
   getDefaultProps() {
-    return {numCells: 64, rowLength: 8, livingCells: 16}
+    return {numCells: 64, rowLength: 8, livingCells: 16, numSimulations: 10}
   },
 
   getInitialState() {
@@ -143,7 +143,22 @@ const Game = React.createClass({
 
         <br/>
 
-        <button onClick={this.simulateGeneration}>Simulate Generation</button>
+        <button
+          onClick={(e) => {
+                    let generations = this.props.numSimulations;
+                    let interval = 200;
+
+                    $(e.target).attr('disabled', true);
+                    for (var i = 0; i < generations; i++) {
+                      setTimeout(() => this.simulateGeneration(), i * interval);
+                    }
+
+                    setTimeout(() => $(e.target).attr('disabled', false), (generations - 1) * interval)
+                  }
+          }
+        >
+          Simulate {this.props.numSimulations} Generations
+        </button>
 
         <br/>
 
@@ -153,7 +168,7 @@ const Game = React.createClass({
                     ReactRailsUJS.mountComponents();
                   }
           }
-          >
+        >
           Reset
         </button>
       </div>
