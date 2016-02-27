@@ -1,6 +1,6 @@
 const Game = React.createClass({
   getDefaultProps() {
-    return {numCells: 3600, rowLength: 60, livingCells: 720, numSimulations: 25}
+    return {numCells: 3600, rowLength: 60, livingCells: 720, numSimulations: 25, simulationInterval: 150}
   },
 
   getInitialState() {
@@ -129,6 +129,17 @@ const Game = React.createClass({
     return grid
   },
 
+  runSimulations() {
+    for (var i = 0; i < this.props.numSimulations; i++) {
+      setTimeout(() => this.simulateGeneration(), i * this.props.simulationInterval)
+    }
+  },
+
+  resetGame() {
+    ReactRailsUJS.unmountComponents();
+    ReactRailsUJS.mountComponents()
+  },
+
   render() {
     return (
       <div>
@@ -139,33 +150,13 @@ const Game = React.createClass({
 
         <br/>
 
-        <button
-          onClick={(e) => {
-                    let generations = this.props.numSimulations;
-                    let interval = 150;
-
-                    $(e.target).attr('disabled', true);
-
-                    for (var i = 0; i < generations; i++) {
-                      setTimeout(() => this.simulateGeneration(), i * interval);
-                    }
-
-                    setTimeout(() => $(e.target).attr('disabled', false), (generations - 1) * interval)
-                  }
-          }
-        >
+        <button onClick={this.runSimulations} >
           Simulate {this.props.numSimulations} Generations
         </button>
 
         <br/>
 
-        <button
-          onClick={() => {
-                    ReactRailsUJS.unmountComponents();
-                    ReactRailsUJS.mountComponents();
-                  }
-          }
-        >
+        <button onClick={this.resetGame}>
           Reset
         </button>
       </div>
