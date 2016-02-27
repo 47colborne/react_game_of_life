@@ -1,6 +1,6 @@
 const Game = React.createClass({
   getDefaultProps() {
-    return {numCells: 16, rowLength: 4, livingCells: 4}
+    return {numCells: 64, rowLength: 8, livingCells: 16}
   },
 
   getInitialState() {
@@ -144,6 +144,18 @@ const Game = React.createClass({
         <br/>
 
         <button onClick={this.simulateGeneration}>Simulate Generation</button>
+
+        <br/>
+
+        <button
+          onClick={() => {
+                    ReactRailsUJS.unmountComponents();
+                    ReactRailsUJS.mountComponents();
+                  }
+          }
+          >
+          Reset
+        </button>
       </div>
     )
   }
