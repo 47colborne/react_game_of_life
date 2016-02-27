@@ -12,14 +12,10 @@ const Cell = React.createClass({
   },
 
   render() {
-    if (this.props.alive) {
-      return (
-        <div className="cell">
-          X
-        </div>
-      )
-    } else {
-      return null
-    }
+    return (
+      <div className="cell">
+        {this.props.alive ? 'X' : ''}
+      </div>
+    )
   }
 });
