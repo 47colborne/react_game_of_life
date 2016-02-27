@@ -19,7 +19,7 @@ const Game = React.createClass({
 
   componentDidMount() {
     this.seeds.forEach((index) => {
-      this.notifyNeighbouringCells(index);
+      this.notifyNeighbouringCells(index, 1);
     })
   },
 
@@ -42,7 +42,7 @@ const Game = React.createClass({
     this.seeds = this.seeds.filter(onlyUnique)
   },
 
-  notifyNeighbouringCells(index) {
+  notifyNeighbouringCells(index, change) {
     let getNeighbouringIndices = (index) => {
       let neighbourIndices = [];
 
@@ -71,7 +71,7 @@ const Game = React.createClass({
 
     getNeighbouringIndices(index).forEach((index) => {
       if (_this.cells[index]) {
-        _this.cells[index].modifyNeighbourCount(1)
+        _this.cells[index].modifyNeighbourCount(change)
       }
     })
   },
