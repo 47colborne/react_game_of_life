@@ -9,6 +9,9 @@ const Game = React.createClass({
 
   componentWillMount() {
     let cells = [];
+    this.deadCells = [];
+    this.bornCells = [];
+
     this.cells = [];
     for (var i = 0; i < this.props.numCells; i++) {
       cells.push(<Cell {...this.cellProps()} />);
@@ -81,15 +84,41 @@ const Game = React.createClass({
   },
 
   simulateGeneration() {
+    this.deadCells = [];
+    this.bornCells = [];
+
     this.cells.forEach((cell) => {
       cell.simulateGeneration()
+    });
+
+    this.dispatchNeighbourChanges()
+  },
+
+  dispatchNeighbourChanges() {
+    this.deadCells.forEach((cell) => {
+      this.notifyNeighbouringCells(cell, -1)
+    });
+
+    this.bornCells.forEach((cell) => {
+      this.notifyNeighbouringCells(cell, 1)
     })
   },
 
   cellProps() {
-    return { ref: (cell) => this.cells.push(cell),
-             onDeath: (cell) => console.log('Received notice of death'),
-             onLife: (cell) => console.log('Received notice of life' ) }
+    return {
+      ref: (cell) => this.cells.push(cell),
+      onDeath: (cell) => {
+        let cellIndex = this.cells.indexOf(cell);
+        console.log(`Received notice of death from ${cellIndex}`);
+        this.deadCells.push(cellIndex)
+
+      },
+      onBirth: (cell) => {
+        let cellIndex = this.cells.indexOf(cell);
+        console.log(`Received notice of birth from ${cellIndex}`);
+        this.bornCells.push(cellIndex)
+      }
+    }
   },
 
   createCellGrid() {
