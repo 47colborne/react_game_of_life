@@ -9,8 +9,9 @@ const Game = React.createClass({
 
   componentWillMount() {
     let cells = [];
+    this.cells = [];
     for (var i = 0; i < this.props.numCells; i++) {
-      cells.push(<Cell />);
+      cells.push(<Cell ref={(cell) => this.cells.push(cell)} />);
     }
 
     this.seedCells(cells)
@@ -20,7 +21,7 @@ const Game = React.createClass({
     for (var i = 0; i < this.props.livingCells; i++) {
       let rand = Math.floor(Math.random() * this.props.numCells);
       console.log(`Making cell #${rand} alive`);
-      cells[rand] = <Cell alive={true} />;
+      cells[rand] = <Cell alive={true} ref={(cell) => this.cells.push(cell)} />;
       this.setState({cells: cells})
     }
   },
