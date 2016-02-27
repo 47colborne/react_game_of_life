@@ -87,7 +87,9 @@ const Game = React.createClass({
   },
 
   cellProps() {
-    return {ref: (cell) => this.cells.push(cell)}
+    return { ref: (cell) => this.cells.push(cell),
+             onDeath: (cell) => console.log('Received notice of death'),
+             onLife: (cell) => console.log('Received notice of life' ) }
   },
 
   createCellGrid() {

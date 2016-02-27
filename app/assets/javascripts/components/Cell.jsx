@@ -16,15 +16,18 @@ const Cell = React.createClass({
   simulateGeneration() {
     if (this.props.alive) {
       if (this.state.neighbourCount < 2) {
-        console.log(`I died due to underpopulation - ${this.state.neighbourCount}`)
+        console.log(`I died due to underpopulation - ${this.state.neighbourCount}`);
+        this.props.onDeath(this)
       } else if (this.state.neighbourCount > 3) {
-        console.log(`I died due to overpopulation - ${this.state.neighbourCount}`)
+        console.log(`I died due to overpopulation - ${this.state.neighbourCount}`);
+        this.props.onDeath(this)
       } else if (this.state.neighbourCount >= 2 && this.state.neighbourCount <= 3) {
         console.log(`I stayed alive - ${this.state.neighbourCount}`)
       }
     } else {
       if (this.state.neighbourCount == 3) {
-        console.log(`I was born - ${this.state.neighbourCount}`)
+        console.log(`I was born - ${this.state.neighbourCount}`);
+        this.props.onLife(this)
       }
     }
   },
