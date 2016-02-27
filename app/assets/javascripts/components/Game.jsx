@@ -1,6 +1,6 @@
 const Game = React.createClass({
   getDefaultProps() {
-    return {numCells: 3600, rowLength: 60, livingCells: 720, numSimulations: 25, simulationInterval: 150}
+    return {numCells: 10000, rowLength: 100, livingCells: 2000, numSimulations: 25, simulationInterval: 150}
   },
 
   getInitialState() {
@@ -80,6 +80,7 @@ const Game = React.createClass({
   },
 
   simulateGeneration() {
+    console.log('Generation');
     this.deadCells = [];
     this.bornCells = [];
 

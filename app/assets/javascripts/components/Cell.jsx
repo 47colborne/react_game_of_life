@@ -32,10 +32,14 @@ const Cell = React.createClass({
     }
   },
 
+  shouldComponentUpdate(newProps, newState) {
+    return this.state.alive != newState.alive
+  },
+
   render() {
     return (
       <div className="cell">
-        {this.state.alive ? 'x' : ''}
+        {this.state.alive ? '.' : ''}
       </div>
     )
   }
