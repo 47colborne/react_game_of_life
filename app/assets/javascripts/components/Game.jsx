@@ -4,7 +4,7 @@ const Game = React.createClass({
   },
 
   getInitialState() {
-    return {cells: []}
+    return {cellElements: []}
   },
 
   componentWillMount() {
@@ -17,7 +17,7 @@ const Game = React.createClass({
       cells.push(<Cell {...this.cellProps()} />);
     }
 
-    this.setState({cells: cells});
+    this.setState({cellElements: cells});
   },
 
   componentDidMount() {
@@ -128,7 +128,7 @@ const Game = React.createClass({
     let grid = [];
 
     for (var i = 0; i < this.props.numCells; i++) {
-      grid.push(this.state.cells[i]);
+      grid.push(this.state.cellElements[i]);
 
       if (this.endOfRow(i)) {
         grid.push(<br/>)
