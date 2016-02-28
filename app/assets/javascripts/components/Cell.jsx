@@ -33,9 +33,7 @@ const Cell = React.createClass({
 
   render() {
     return (
-      <div className="cell">
-        {this.state.alive ? '.' : ''}
-      </div>
+      <div className="cell" style={this.state.alive ? {backgroundColor: 'black'} : null} />
     )
   }
 });
