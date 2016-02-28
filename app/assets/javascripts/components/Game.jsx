@@ -80,7 +80,6 @@ const Game = React.createClass({
   },
 
   simulateGeneration() {
-    console.log('Generation');
     this.deadCells = [];
     this.bornCells = [];
 
@@ -93,12 +92,10 @@ const Game = React.createClass({
 
   dispatchNeighbourChanges() {
     this.deadCells.forEach((cell) => {
-      this.cells[cell].makeDead();
       this.notifyNeighbouringCells(cell, -1)
     });
 
     this.bornCells.forEach((cell) => {
-      this.cells[cell].makeAlive();
       this.notifyNeighbouringCells(cell, 1)
     })
   },
