@@ -21,16 +21,11 @@ const Cell = React.createClass({
 
   simulateGeneration() {
     if (this.state.alive) {
-      if (this.neighbourCount < 2) {
+      if (this.neighbourCount < 2 || this.neighbourCount > 3) {
         this.props.onDeath(this)
-      } else if (this.neighbourCount > 3) {
-        this.props.onDeath(this)
-      } else if (this.neighbourCount >= 2 && this.neighbourCount <= 3) {
       }
-    } else {
-      if (this.neighbourCount == 3) {
-        this.props.onBirth(this)
-      }
+    } else if (this.neighbourCount == 3) {
+      this.props.onBirth(this)
     }
   },
 
