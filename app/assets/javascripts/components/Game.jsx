@@ -1,6 +1,6 @@
 const Game = React.createClass({
   getDefaultProps() {
-    return {numCells: 10000, rowLength: 100, livingCells: 2000, numSimulations: 100, simulationInterval: 100}
+    return {numCells: 10000, rowLength: 100, livingCells: 2000, numSimulations: 100, simulationInterval: 50}
   },
 
   getInitialState() {
@@ -128,9 +128,18 @@ const Game = React.createClass({
   },
 
   runSimulations() {
-    for (var i = 0; i < this.props.numSimulations; i++) {
-      setTimeout(() => this.simulateGeneration(), i * this.props.simulationInterval)
-    }
+    let simulationCount = 0;
+
+    let runSimulation = () => {
+      this.simulateGeneration();
+      simulationCount++;
+
+      if (simulationCount < this.props.numSimulations) {
+        setTimeout(runSimulation, this.props.simulationInterval)
+      }
+    };
+
+   runSimulation()
   },
 
   resetGame() {
