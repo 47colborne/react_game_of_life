@@ -150,17 +150,18 @@ const Game = React.createClass({
   render() {
     return (
       <div>
-
         <div className="grid">
           {this.createCellGrid()}
         </div>
 
+        <br/>
         <br/>
 
         <button onClick={this.runSimulations} >
           Simulate {this.props.numSimulations} Generations
         </button>
 
+        <br/>
         <br/>
 
         <button onClick={this.resetGame}>
