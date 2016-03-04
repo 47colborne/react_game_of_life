@@ -22,10 +22,6 @@ const Game = React.createClass({
 
   componentDidMount() {
     this.seedCells();
-
-    this.seeds.forEach((cellIndex) => {
-      this.notifyNeighbouringCells(cellIndex, 1);
-    })
   },
 
   seedCells() {
@@ -33,18 +29,14 @@ const Game = React.createClass({
 
     for (var i = 0; i < this.props.livingCells; i++) {
       let randomIndex = Math.floor(Math.random() * this.props.numCells);
-      this.cells[randomIndex].makeAlive();
-      this.seeds.push(randomIndex);
-    }
-    this.deduplicateSeeds();
-  },
 
-  deduplicateSeeds() {
-    function onlyUnique(value, index, self) {
-      return self.indexOf(value) === index;
+      if (!this.seeds.includes(randomIndex)) {
+        this.seeds.push(randomIndex);
+        this.cells[randomIndex].makeAlive();
+      }
     }
 
-    this.seeds = this.seeds.filter(onlyUnique)
+    this.dispatchNeighbourChanges()
   },
 
   notifyNeighbouringCells(cellIndex, change) {

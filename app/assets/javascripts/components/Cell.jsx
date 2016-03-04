@@ -12,22 +12,22 @@ const Cell = React.createClass({
   },
 
   makeAlive() {
-    this.setState({alive: true})
+    this.setState({alive: true});
+    this.props.onBirth(this)
   },
 
   makeDead() {
-    this.setState({alive: false})
+    this.setState({alive: false});
+    this.props.onDeath(this);
   },
 
   simulateGeneration() {
     if (this.state.alive) {
       if (this.neighbourCount < 2 || this.neighbourCount > 3) {
         this.makeDead();
-        this.props.onDeath(this);
       }
     } else if (this.neighbourCount == 3) {
       this.makeAlive();
-      this.props.onBirth(this)
     }
   },
 
