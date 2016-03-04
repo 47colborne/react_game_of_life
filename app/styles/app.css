@@ -1,0 +1,22 @@
+/* App.jsx styles
+/* =========================================== */
+#app {}
+
+.cell {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+}
+
+.grid {
+    border: 1px solid black;
+    display: inline-block;
+    font-size: 0;
+    padding: 2px;
+}
+
+h1 {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 0;
+}
