@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import Cell from './Cell'
+import ReactCanvas, { Surface, Layer, Group, Gradient } from 'react-canvas';
 
 const Game = React.createClass({
   getDefaultProps() {
-    return {numCells: 10000, rowLength: 100, livingCells: 2000, numSimulations: 500, simulationInterval: 0}
+    return {numCells: 1600, rowLength: 40, livingCells: 400, numSimulations: 1000, simulationInterval: 0}
   },
 
   getInitialState() {
@@ -71,10 +72,6 @@ const Game = React.createClass({
     })
   },
 
-  endOfRow(cellIndex) {
-    return cellIndex % this.props.rowLength == this.props.rowLength - 1;
-  },
-
   simulateGeneration() {
     this.deadCells = [];
     this.bornCells = [];
@@ -105,6 +102,7 @@ const Game = React.createClass({
       onBirth: (cell) => {
         this.bornCells.push(this.cells.indexOf(cell))
       },
+      index: index,
       key: index
     }
   },
@@ -114,10 +112,6 @@ const Game = React.createClass({
 
     for (var i = 0; i < this.props.numCells; i++) {
       grid.push(this.state.cellElements[i]);
-
-      if (this.endOfRow(i)) {
-        grid.push(<br key={1000000 + i}/>)
-      }
     }
 
     return grid
@@ -138,12 +132,16 @@ const Game = React.createClass({
    runSimulation()
   },
 
+  shouldComponentUpdate() {
+    return false;
+  },
+
   render() {
     return (
       <div>
-        <div className="grid">
+        <Surface width={600} height={600} left={2} top={2}>
           {this.createCellGrid()}
-        </div>
+        </Surface>
 
         <br/>
         <br/>
