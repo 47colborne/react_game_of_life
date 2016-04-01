@@ -22,7 +22,10 @@ const COMMON = {
 		}, {
 			test: /\.css$/,
 			loaders: ['style', 'css', 'postcss']
-		}]
+		}],
+		postLoaders: [
+			{ loader: "transform?brfs" }
+		]
 	},
 	resolve: {
 		extensions: ["", ".css", ".js", ".jsx"]
