@@ -138,11 +138,6 @@ const Game = React.createClass({
    runSimulation()
   },
 
-  resetGame() {
-    ReactRailsUJS.unmountComponents();
-    ReactRailsUJS.mountComponents()
-  },
-
   render() {
     return (
       <div>
@@ -155,13 +150,6 @@ const Game = React.createClass({
 
         <button onClick={this.runSimulations} >
           Simulate {this.props.numSimulations} Generations
-        </button>
-
-        <br/>
-        <br/>
-
-        <button onClick={this.resetGame}>
-          Reset
         </button>
       </div>
     )
