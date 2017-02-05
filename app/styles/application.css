@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+html {
+  display: flex;
+  justify-content: center;
+  min-width: 640px;
+}
+
 .cell {
     display: inline-block;
     width: 6px;
