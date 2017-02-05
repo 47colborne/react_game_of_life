@@ -1,15 +1,9 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import Cell from './Cell'
+import Cell from './Cell';
 
-const Game = React.createClass({
-  getDefaultProps() {
-    return {numCells: 10000, rowLength: 100, livingCells: 2000, numSimulations: 500, simulationInterval: 0}
-  },
-
-  getInitialState() {
-    return {cellElements: []}
-  },
+export default class Game extends React.Component {
+  static defaultProps = {numCells: 10000, rowLength: 100, livingCells: 2000, numSimulations: 500, simulationInterval: 0};
+  state = {cellElements: []};
 
   componentWillMount() {
     let cells = [];
@@ -22,11 +16,11 @@ const Game = React.createClass({
     }
 
     this.setState({cellElements: cells});
-  },
+  }
 
   componentDidMount() {
     this.seedCells();
-  },
+  }
 
   seedCells() {
     this.seeds = [];
@@ -41,7 +35,7 @@ const Game = React.createClass({
     }
 
     this.dispatchNeighbourChanges()
-  },
+  }
 
   notifyNeighbouringCells(cellIndex, change) {
     let neighbourIndices = [];
@@ -69,11 +63,11 @@ const Game = React.createClass({
         this.cells[index].modifyNeighbourCount(change)
       }
     })
-  },
+  }
 
   endOfRow(cellIndex) {
     return cellIndex % this.props.rowLength == this.props.rowLength - 1;
-  },
+  }
 
   simulateGeneration() {
     this.deadCells = [];
@@ -84,7 +78,7 @@ const Game = React.createClass({
     });
 
     this.dispatchNeighbourChanges()
-  },
+  }
 
   dispatchNeighbourChanges() {
     this.deadCells.forEach((cell) => {
@@ -94,7 +88,7 @@ const Game = React.createClass({
     this.bornCells.forEach((cell) => {
       this.notifyNeighbouringCells(cell, 1)
     })
-  },
+  }
 
   cellProps(index) {
     return {
@@ -107,7 +101,7 @@ const Game = React.createClass({
       },
       key: index
     }
-  },
+  }
 
   createCellGrid() {
     let grid = [];
@@ -121,7 +115,7 @@ const Game = React.createClass({
     }
 
     return grid
-  },
+  }
 
   runSimulations() {
     let simulationCount = 0;
@@ -136,7 +130,7 @@ const Game = React.createClass({
     };
 
    runSimulation()
-  },
+  }
 
   render() {
     return (
@@ -154,6 +148,4 @@ const Game = React.createClass({
       </div>
     )
   }
-});
-
-export default Game
+}

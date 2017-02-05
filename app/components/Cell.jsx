@@ -1,28 +1,25 @@
 import React from 'react';
-import ReactDom from 'react-dom'
 
-const Cell = React.createClass({
-  getInitialState() {
-    return {alive: false}
-  },
+export default class Cell extends React.Component {
+  state = {alive: false};
 
   componentWillMount() {
     this.neighbourCount = 0
-  },
+  }
 
   modifyNeighbourCount(change) {
     this.neighbourCount = this.neighbourCount + change
-  },
+  }
 
   makeAlive() {
     this.setState({alive: true});
     this.props.onBirth(this)
-  },
+  }
 
   makeDead() {
     this.setState({alive: false});
     this.props.onDeath(this);
-  },
+  }
 
   simulateGeneration() {
     if (this.state.alive) {
@@ -32,13 +29,11 @@ const Cell = React.createClass({
     } else if (this.neighbourCount == 3) {
       this.makeAlive();
     }
-  },
+  }
 
   render() {
     return (
       <div className="cell" style={this.state.alive ? {backgroundColor: 'black'} : null} />
     )
   }
-});
-
-export default Cell
+}

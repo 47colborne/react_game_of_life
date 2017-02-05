@@ -10,6 +10,6 @@ module.exports = {
   },
 
   plugins: {
-    babel: {presets: ['es2015', 'react']}
+    babel: {presets: ['es2015', 'es2016', 'stage-0', 'react']}
   }
 };

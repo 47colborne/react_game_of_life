@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import Game from './Game'
 
-class App extends Component {
+export default class App extends React.Component {
   render () {
     return (
       <div>
@@ -15,5 +14,3 @@ class App extends Component {
     )
   }
 }
-
-export default App;
