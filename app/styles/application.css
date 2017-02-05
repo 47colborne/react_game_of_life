@@ -1,6 +1,6 @@
-/* App.jsx styles
-/* =========================================== */
-#app {}
+* {
+  box-sizing: border-box;
+}
 
 .cell {
     display: inline-block;
