@@ -117,7 +117,7 @@ export default class Game extends React.Component {
     return grid
   }
 
-  runSimulations() {
+  runSimulations = () => {
     let simulationCount = 0;
 
     let runSimulation = () => {
