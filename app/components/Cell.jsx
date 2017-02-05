@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import ReactCanvas, { Surface, Layer, Group, Gradient } from 'react-canvas';
+import ReactDom from 'react-dom'
 
 const Cell = React.createClass({
   getInitialState() {
@@ -35,28 +34,9 @@ const Cell = React.createClass({
     }
   },
 
-  getGradientStyle() {
-    return {
-      top: Math.floor(this.props.index / 40) * 15,
-      left: this.props.index % 40 * 15,
-      width: 15,
-      height: 15
-    };
-  },
-
-  getGradientColors: function(){
-    return [
-      { color: this.state.alive ? "black" : "transparent", position: 0 }
-    ];
-  },
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.alive != nextState.alive;
-  },
-
   render() {
     return (
-      <Gradient style={this.getGradientStyle()} colorStops={this.getGradientColors()} />
+      <div className="cell" style={this.state.alive ? {backgroundColor: 'black'} : null} />
     )
   }
 });
