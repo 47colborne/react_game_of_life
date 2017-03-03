@@ -1,5 +1,6 @@
 import React from 'react';
 import Cell from './Cell.jsx';
+require('../assets/styles/game.css');
 
 export default class Game extends React.Component {
   static defaultProps = {numCells: 10000, rowLength: 100, livingCells: 2000, numSimulations: 500, simulationInterval: 0};
@@ -135,7 +136,7 @@ export default class Game extends React.Component {
   render() {
     return (
       <div>
-        <div className="grid">
+        <div className="game">
           {this.createCellGrid()}
         </div>
 

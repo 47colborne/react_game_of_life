@@ -1,4 +1,5 @@
 import React from 'react';
+require('../assets/styles/cell.css');
 
 export default class Cell extends React.Component {
   state = {alive: false};
