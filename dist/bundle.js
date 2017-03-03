@@ -9751,7 +9751,7 @@ module.exports = ReactPropTypesSecret;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Game_jsx__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Game__ = __webpack_require__(86);
 
 
 
@@ -9770,7 +9770,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         { href: 'https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life', rel: 'nofollow' },
         'What is it?'
       ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Game_jsx__["a" /* default */], null)
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Game__["a" /* default */], null)
     );
   }
 }
@@ -9872,7 +9872,7 @@ class Cell extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Cell_jsx__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Cell__ = __webpack_require__(85);
 
 
 __webpack_require__(187);
@@ -9904,7 +9904,7 @@ class Game extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     this.cells = [];
 
     for (var i = 0; i < this.props.numCells; i++) {
-      cells.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Cell_jsx__["a" /* default */], this.cellProps(i)));
+      cells.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Cell__["a" /* default */], this.cellProps(i)));
     }
 
     this.setState({ cellElements: cells });
@@ -22368,14 +22368,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App_jsx__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App__ = __webpack_require__(82);
 
 
 
 __webpack_require__(84);
 
 document.addEventListener('DOMContentLoaded', () => {
-  __WEBPACK_IMPORTED_MODULE_0_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_App_jsx__["a" /* default */], null), document.querySelector('#app'));
+  __WEBPACK_IMPORTED_MODULE_0_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_App__["a" /* default */], null), document.querySelector('#app'));
 });
 
 /***/ })

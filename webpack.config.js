@@ -16,5 +16,8 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       }
     ]
+  },
+  resolve: {
+    extensions: ['.css', '.jsx', '.js']
   }
 };
