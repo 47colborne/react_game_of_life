@@ -1,5 +1,5 @@
 import React from 'react';
-import Cell from './Cell';
+import Cell from './Cell.jsx';
 
 export default class Game extends React.Component {
   static defaultProps = {numCells: 10000, rowLength: 100, livingCells: 2000, numSimulations: 500, simulationInterval: 0};
